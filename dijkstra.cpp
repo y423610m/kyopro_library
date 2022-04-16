@@ -69,7 +69,7 @@ int main(){
 	dijkstra di(n);
 	di.set_graph(m);
 	di.solve(0);
-	vector<int> ans = di.dist;
+	vector<int>& ans = di.dist;
 	for(int i=0;i<ans.size();i++) cout<<ans[i]<<" ";
 	cout<<endl;
 }
