@@ -5,14 +5,7 @@ using namespace std;
 
 using ll = long long int;
 using ld = long double;
-// __uint128_t
-constexpr ll MOD = 998'244'353;
-// constexpr ll MOD = 1000'000'007;
 
-
-
-// #define _GLIBCXX_DEQUE_BUF_SIZE 512
-// #pragma comment(linker, "/stack:1000000000")
 
 // int:[-2'147'483'648 : 2'147'483'647]
 // ll:[-9'223'372'036'854'775'808 : 9'223'372'036'854'775'807]
@@ -26,7 +19,6 @@ string No = "No";
 #define pb(a) push_back(a)
 #define PS(a) cout<<(a)<<" ";
 #define PL(a) cout<<(a)<<endl;
-#define endl "\n"
 // #define ONLINE_JUDGE 1
 #ifdef ONLINE_JUDGE
    #define ES(a) while(0){}
@@ -73,6 +65,12 @@ template<typename T, typename U> void chmax(T& t, const U& u) {if (t < u) t = u;
 template<typename T, typename U, typename S> void chmm(T& t, const U& u, const S& s) {if(t < u){t = u;} if(t > s){t = s;}}//clamp
 
 
+// __uint128_t
+constexpr ll MOD = 998'244'353;
+// constexpr ll MOD = 1000'000'007;
+// #define _GLIBCXX_DEQUE_BUF_SIZE 512
+// #pragma comment(linker, "/stack:1000000000")
+#define endl "\n"
 
 void solve() {
 
