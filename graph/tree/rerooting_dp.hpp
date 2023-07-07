@@ -28,6 +28,7 @@ struct RerootingDP {
             outs[v].emplace_back(nval);
             val = Merge(val,nval);
          }
+         ES(v) EL(Put_Vertex(val,v))
          return Put_Vertex(val,v);
       };
 

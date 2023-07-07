@@ -11,22 +11,22 @@ TO DO: find_path, find_edges
 
 
 //////////////////Graph Template
-template<typename T=int>//cost type
+template<typename CostT=int>//cost type
 struct Edge{
     int from, to;
-    T cost;
+    CostT cost;
     int id, used;
 
     Edge() = default;
 
-    Edge(int from, int to, T cost = 1, int id = -1, int used = false)
+    Edge(int from, int to, CostT cost = 1, int id = -1, int used = false)
     : from(from)
     , to(to)
     , cost(cost)
     , id(id)
     , used(used){}
 
-    Edge(ll from, ll to, T cost = 1, int id = -1, int used = false)
+    Edge(ll from, ll to, CostT cost = 1, int id = -1, int used = false)
     : from(from)
     , to(to)
     , cost(cost)
@@ -40,12 +40,12 @@ struct Edge{
 //     return a.cost<b.cost;
 // }
 
-template <typename T = int>
-using Edges = vector< Edge< T > >;
+template <typename CostT = int>
+using Edges = vector< Edge< CostT > >;
 
-template<typename T>
-vector< Edge< T > > readE(int M, int padding = -1, bool weighted = false){
-    vector< Edge< T > > E;
+template<typename CostT>
+vector< Edge< CostT > > readE(int M, int padding = -1, bool weighted = false){
+    vector< Edge< CostT > > E;
     E.reserve(M);
     for(int i=0;i<M;i++){
         int u,v;
@@ -53,7 +53,7 @@ vector< Edge< T > > readE(int M, int padding = -1, bool weighted = false){
         u += padding;
         v += padding;
 
-        T w = 1;
+        CostT w = 1;
         if(weighted) cin>>w;
 
         E.emplace_back(u,v,w,i,0);
@@ -64,29 +64,39 @@ vector< Edge< T > > readE(int M, int padding = -1, bool weighted = false){
 
 
 
-template <typename T = int>//cost type
+template <typename CostT = int>//cost type
 struct Graph{
-    vector< vector< Edge< T > > > g;
+    vector< vector< Edge< CostT > > > g;
     int id;
 
     Graph() = default;
 
     explicit Graph(int n):g(n), id(0){}
 
-    Graph(int n, const Edges<T>& E, bool directed = false):g(n), id(0){
+    Graph(int n, const Edges<T>& E, bool directed = false, bool reverse = false):g(n), id(0){
         for(const auto& e: E){
-            g[e.from].emplace_back(e);
-            if(!directed) g[e.to].emplace_back(e.to, e.from, e.cost, e.id, e.used);
+            if(directed){
+                if(!reverse){
+                    g[e.from].emplace_back(e);
+                }
+                else{
+                    g[e.to].emplace_back(e.to, e.from, e.cost, e.id, e.used);
+                }
+            }
+            else{
+                g[e.from].emplace_back(e);
+                g[e.to].emplace_back(e.to, e.from, e.cost, e.id, e.used);
+            }
         }
     }
 
     size_t size()const{return g.size();}
 
-    void add_directed_edge(int from, int to, T cost = 1){
+    void add_directed_edge(int from, int to, CostT cost = 1){
         g[from].emplace_back(from, to, cost, id++, 0);
     }
 
-    void add_edge(int from, int to, T cost = 1){
+    void add_edge(int from, int to, CostT cost = 1){
         g[from].emplace_back(from, to, cost, id, 0);
         g[to].emplace_back(to, from, cost, id++, 0);
     }
@@ -96,7 +106,7 @@ struct Graph{
             int u,v; cin>>u>>v;
             u += padding; v += padding;
 
-            T w = 1;
+            CostT w = 1;
             if(weighted) cin>>w;
 
             if(directed) add_directed_edge(u,v,w);
@@ -104,8 +114,8 @@ struct Graph{
         }
     }
 
-    inline vector< Edge< T > > &operator[](const int& k){return g[k];}
-    inline const vector< Edge< T > > &operator[](const int& k)const{return g[k];}
+    inline vector< Edge< CostT > > &operator[](const int& k){return g[k];}
+    inline const vector< Edge< CostT > > &operator[](const int& k)const{return g[k];}
 
 };
 
