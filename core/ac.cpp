@@ -53,12 +53,6 @@ template<typename T, typename U> void operator--(pair<T, U>& p){p.first--, p.sec
 template<typename T, typename U> void operator--(pair<T, U>& p, int){p.first--, p.second--;}//post
 template<typename T, typename U> void operator++(pair<T, U>& p){p.first++, p.second++;}//pre
 template<typename T, typename U> void operator++(pair<T, U>& p, int){p.first++, p.second++;}//post
-template<typename T> ostream &operator<<(ostream &os, const vector< T > &v) {for(int i = 0; i < (int) v.size(); i++) {os << v[i] << (i + 1 != (int) v.size() ? " " : "");}return os;}
-template<typename T> istream &operator>>(istream &is, vector< T > &v) {for(T &in : v) is >> in;return is;}
-template<typename T> void operator--(vector<T>& A){for(auto& a:A) a--;}//pre
-template<typename T> void operator--(vector<T>& A, int){for(auto& a:A) a--;}//post
-template<typename T> void operator++(vector<T>& A){for(auto& a:A) a++;}//pre
-template<typename T> void operator++(vector<T>& A, int){for(auto& a:A) a++;}//post
 template<class T,class U> struct std::hash<std::pair<T,U>>{size_t operator()(const std::pair<T,U> &p) const noexcept {return (std::hash<T>()(p.first)+1) ^ (std::hash<U>()(p.second)>>2);}};
 template<typename T, unsigned long int sz> ostream &operator<<(ostream &os, const array< T , sz > &v) {for(int i = 0; i < sz; i++) {os << v[i] << (i + 1 != (int) v.size() ? " " : "");}return os;}
 template<typename T, unsigned long int sz> istream &operator>>(istream &is, array< T , sz > &v) {for(T& in:v){cin>>in;} return is;}
@@ -66,6 +60,12 @@ template<typename T, unsigned long int sz> void operator--(array< T , sz > &A){f
 template<typename T, unsigned long int sz> void operator--(array< T , sz > &A, int){for(auto& a:A){a--;}}//post
 template<typename T, unsigned long int sz> void operator++(array< T , sz > &A){for(auto& a:A){a++;}}//pre
 template<typename T, unsigned long int sz> void operator++(array< T , sz > &A, int){for(auto& a:A){a++;}}//post
+template<typename T> ostream &operator<<(ostream &os, const vector< T > &v) {for(int i = 0; i < (int) v.size(); i++) {os << v[i] << (i + 1 != (int) v.size() ? " " : "");}return os;}
+template<typename T> istream &operator>>(istream &is, vector< T > &v) {for(T &in : v) is >> in;return is;}
+template<typename T> void operator--(vector<T>& A){for(auto& a:A) a--;}//pre
+template<typename T> void operator--(vector<T>& A, int){for(auto& a:A) a--;}//post
+template<typename T> void operator++(vector<T>& A){for(auto& a:A) a++;}//pre
+template<typename T> void operator++(vector<T>& A, int){for(auto& a:A) a++;}//post
 template<typename T, typename U> void chmin(T& t, const U& u) {if (t > u) t = u;}
 template<typename T, typename U> void chmax(T& t, const U& u) {if (t < u) t = u;}
 template<typename T, typename U, typename S> void chmm(T& t, const U& u, const S& s) {if(t < u){t = u;} if(t > s){t = s;}}//clamp

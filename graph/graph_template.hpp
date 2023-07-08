@@ -73,7 +73,7 @@ struct Graph{
 
     explicit Graph(int n):g(n), id(0){}
 
-    Graph(int n, const Edges<T>& E, bool directed = false, bool reverse = false):g(n), id(0){
+    Graph(int n, const Edges<CostT>& E, bool directed = false, bool reverse = false):g(n), id(0){
         for(const auto& e: E){
             if(directed){
                 if(!reverse){
