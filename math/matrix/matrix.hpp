@@ -11,7 +11,7 @@ struct Matrix {
 
    size_t size() const {
       if(A.empty()) return 0;
-      assert(A.size() == A[0].size());
+      // assert(A.size() == A[0].size());
       return A.size();
    }
 
@@ -58,10 +58,11 @@ struct Matrix {
    Matrix &operator*=(const Matrix &B) {
       size_t n = height(), m = B.width(), p = width();
       assert(p == B.height());
+      T zero = T();
       vector< vector< T > > C(n, vector< T >(m, 0));
-      for(size_t i = 0; i < n; i++)
-         for(size_t j = 0; j < m; j++)
-            for(size_t k = 0; k < p; k++)
+      for(size_t j = 0; j < m; j++)
+         for(size_t k = 0; k < p; k++) if(B[k][j]!=zero)
+            for(size_t i = 0; i < n; i++)
                C[i][j] = (C[i][j] + (*this)[i][k] * B[k][j]);
       A.swap(C);
       return (*this);
@@ -110,10 +111,11 @@ struct Matrix {
       Matrix B(*this);
       assert(width() == height());
       T ret = 1;
+      T zero = T();
       for(size_t i = 0; i < width(); i++) {
          int idx = -1;
          for(size_t j = i; j < width(); j++) {
-            if(B[j][i] != 0) idx = j;
+            if(B[j][i] != zero) idx = j;
          }
          if(idx == -1) return (0);
          if(i != idx) {
