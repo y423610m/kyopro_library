@@ -82,7 +82,7 @@ struct CompleteBinaryTree{
       while(a!=b){
          a >>= 1;
          b >>= 1;
-         dist++;
+         dist+=2;
       }
       return dist;
    }
