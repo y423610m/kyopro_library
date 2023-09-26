@@ -4,13 +4,16 @@ struct CompleteBinaryTree{
 
    void SetN(long long _n){
       n = _n;
+      depth = GetPosition(n).first+1;
    }
 
    void SetDepth(long long d){
       depth = d;
-      for(int i=0;i<d;i++){
-         n += 1LL << i;
-      }
+      n = 1LL<<d;
+      n--;
+      // for(int i=0;i<d;i++){
+      //    n += 1LL << i;
+      // }
    }
 
    long long CountDescendantsDist(long long p, long long dist, bool right){
@@ -99,6 +102,10 @@ struct CompleteBinaryTree{
       d = 63 - __builtin_clzll(p);
       p -= 1LL<<(d);
       return {d, p};
+   }
+
+   long long GetSize(int d){
+      return 1LL<<d;
    }
 
    long long n = 1LL<<63;
