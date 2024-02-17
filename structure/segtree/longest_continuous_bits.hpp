@@ -6,25 +6,56 @@ using namespace atcoder;
 namespace LongContinuousBits{
    template<typename T>
    struct S{
-      T lenL=1;
-      T lenR=1;
-      T long0=1;
+      T lenL=0;
+      T lenR=0;
+      T long0=0;
       T long1=0;
       bool isL1 = false;
       bool isR1 = false;
-      T num0 = 1;
+      T num0 = 0;
       T num1 = 0;
-      ll size=1;
+      ll size = 0;
+
+      friend ostream& operator<<(ostream& os, const S& s){
+         os<<"lenL:"<<s.lenL<<", ";
+         os<<"lenR:"<<s.lenR<<", ";
+         os<<"long0:"<<s.long0<<", ";
+         os<<"long1:"<<s.long1<<", ";
+         os<<"isL1:"<<s.isL1<<", ";
+         os<<"isR1:"<<s.isR1<<", ";
+         os<<"num0:"<<s.num0<<", ";
+         os<<"num1:"<<s.num1<<", ";
+         os<<"size:"<<s.size<<", ";
+         os<<endl;
+         return os;
+      }
    };
+
+   template<typename T> S<T> GetS0(){
+      S<T> s;
+      s.lenL=1;
+      s.lenR=1;      
+      s.long0 = 1;
+      s.long1 = 0;
+      s.isL1 = false;
+      s.isR1 = false;
+      s.num0 = 1;
+      s.num1 = 0;
+      s.size = 1;
+      return s;
+   }
 
    template<typename T> S<T> GetS1(){
       S<T> s;
+      s.lenL=1;
+      s.lenR=1;      
       s.long0 = 0;
       s.long1 = 1;
       s.isL1 = true;
       s.isR1 = true;
       s.num0 = 0;
       s.num1 = 1;
+      s.size = 1;
       return s;
    }
 
@@ -57,6 +88,15 @@ namespace LongContinuousBits{
             if(r.lenL==r.size) s.lenR = s.long0;
          }
       }
+      // if(l.isR1==r.isL1){
+      //    bool is1 = l.isR1;
+      //    T& len = is1? s.long1 : s.long0;
+      //    if(len < l.lenR+r.lenL){
+      //       len = l.lenR+r.lenL;
+      //    }
+      //    if(l.lenR==l.size) s.lenL = len;
+      //    if(r.lenL==r.size) s.lenR = len;
+      // }
       s.num0 = l.num0 + r.num0;
       s.num1 = l.num1 + r.num1;
       s.size = l.size + r.size;
@@ -79,7 +119,7 @@ namespace LongContinuousBits{
          s.num0 = s.long0;
          s.num1 = s.long1;
       }
-      else if(f.nxt0==1){
+      else if(f.nxt0==1&&f.nxt1==0){// nxt0=1 && nxt1=0
          s.isR1 ^= 1;
          s.isL1 ^= 1;
          swap(s.long1, s.long0);
