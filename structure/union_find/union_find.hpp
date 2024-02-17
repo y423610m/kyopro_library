@@ -132,6 +132,10 @@ struct UnionFindUM : public UnionFindBase<KeyT, unordered_map<KeyT, KeyT>, unord
       }
    }
 
+   void Add(KeyT x){
+      _EnsureExistance(x);
+   } 
+
    bool same(KeyT a, KeyT b){
       _EnsureExistance(a);
       _EnsureExistance(b);
