@@ -2,7 +2,7 @@
 
 template< int char_size >
 struct TrieNode {
-    int val = -1;//この頂点の値
+    int val = -1;//この頂点の値==val+文字
     int parent = -1;//親の頂点番号
     int depth = 0;//何文字目か．空文字を0とする．1文字なら1．
     int children[char_size];//次の文字の頂点番号
