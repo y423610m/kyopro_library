@@ -46,6 +46,8 @@ string No = "No";
 #define RALL(a)  (a).rbegin(),(a).rend()
 #define ERASE(a) a.erase(unique(a.begin(), a.end()), a.end());
 using Pii = pair<int, int>;
+using Tiii = tuple<int, int, int>;
+using Tiiii = tuple<int, int, int, int>;
 using Pll = pair<ll,ll>;
 using Tlll = tuple<ll,ll,ll>;
 using Tllll = tuple<ll,ll,ll,ll>;
