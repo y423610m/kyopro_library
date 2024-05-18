@@ -8,13 +8,13 @@ struct State{
    }
 
    //解出力
-   void print(){
+   void Print(){
       cerr<<"----State result----"<<endl;
       PL(ans)
    }
 
    ll score = 0;
-   ll calcScore(const Input& input){
+   ll CalcScore(const Input& input){
       return score;
    }
 

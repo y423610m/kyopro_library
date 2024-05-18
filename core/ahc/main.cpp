@@ -14,9 +14,9 @@ int main() {
    // for(int tt = 0; tt<TT; tt++) solve();
 
    Solver solver;
-   StatePtr state = solver.solve();
+   StatePtr state = solver.Solve();
 
-   state->print();
+   state->Print();
 
    return 0;
 }

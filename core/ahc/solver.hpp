@@ -20,11 +20,11 @@ struct Solver{
    
    StatePtr solve(){
       StatePtr best(new State(input));
-      naive(best);
+      _Naive(best);
 
       while(!timer.pass(2000)){
          StatePtr state(new State(input));
-         naive(state);
+         _Naive(state);
          if(best->score > state->score){
             best = state;
          }
@@ -36,7 +36,7 @@ struct Solver{
       return best;
    }
 
-   void naive(StatePtr state){
+   void _Naive(StatePtr state){
       EL("naive")
       TIMER_LOG(timer, "");
 
