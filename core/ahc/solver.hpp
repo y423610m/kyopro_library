@@ -18,7 +18,7 @@ struct Solver{
       
    }
    
-   StatePtr solve(){
+   StatePtr Solve(){
       StatePtr best(new State(input));
       _Naive(best);
 
