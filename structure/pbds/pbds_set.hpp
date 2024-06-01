@@ -17,18 +17,27 @@ struct PBDSSet{
         return *st.find_by_order(i);
     }
 
+    T operator[](int i)const{
+        return *st.find_by_order(i);
+    }
+
     int lower_bound(T x){
         return st.order_of_key(x);
     }
 
     int upper_bound(T x){
-        return min(st.order_of_key(x)+1, st.size());
+        if(contains(x)) return lower_bound(x)+1;
+        return lower_bound(x);
     }
 
     int find(T x){
         int id = st.order_of_key(x);
         if(id<st.size()&&*st.find_by_order(id)==x) return id;
         else return st.size();
+    }
+
+    int contains(T x){
+        return find(x)!=st.size();
     }
 
     bool erase(T x){
@@ -50,6 +59,10 @@ struct PBDSSet{
     }
 
     int size(){
+        return st.size();
+    }
+
+    int size()const{
         return st.size();
     }
 
@@ -78,3 +91,9 @@ struct PBDSSet{
         EL(st.find(-1))
     */
 };
+
+template<typename T, typename Compare = less<T>, typename tag = rb_tree_tag>
+ostream& operator<<(ostream& os, const PBDSSet<T, Compare, tag>& st){
+    for(int i=0;i<st.size();i++) os << st[i] << " ";
+    return os;
+}
