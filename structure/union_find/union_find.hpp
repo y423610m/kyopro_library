@@ -9,7 +9,7 @@ struct UnionFindBase
    int n;
    ParentT parent;//unordered_map<KeyT, KeyT> or vector<int>
    SizeT sz;//unordered_map<KeyT, int> or vetor<int>
-   ChildT child;//unordered_map<KeyT, vector<KeyT>> or vector<vector<int>>
+   ChildT children;//unordered_map<KeyT, vector<KeyT>> or vector<vector<int>>
    WeightT diffWeight;
 
    UnionFindBase(int n) : n(n)
@@ -21,18 +21,18 @@ struct UnionFindBase
    }
 
    bool merge(KeyT a, KeyT b, ll w = 0){
-      auto MergeF = [&](KeyT x, KeyT y)->bool {return sz[x] >= sz[y];};
-      auto UpdateF = [&](KeyT x, KeyT y)->void {};
+      auto MergeF = [&](KeyT p, KeyT c)->bool {return sz[p] >= sz[c];};
+      auto UpdateF = [&](KeyT p, KeyT c)->void {};
       return mergeMU(a, b, MergeF, UpdateF, w);
    }
 
    bool mergeM(KeyT a, KeyT b, std::function<bool(KeyT, KeyT)> MergeF, ll w = 0){
-      auto UpdateF = [&](KeyT x, KeyT y)->void {};
+      auto UpdateF = [&](KeyT p, KeyT c)->void {};
       return mergeMU(a, b, MergeF, UpdateF, w);
    }
 
    bool mergeU(KeyT a, KeyT b, std::function<void(KeyT, KeyT)> UpdateF, ll w = 0){
-      auto MergeF = [&](KeyT x, KeyT y)->bool {return sz[x] >= sz[y];};
+      auto MergeF = [&](KeyT p, KeyT c)->bool {return sz[p] >= sz[c];};
       return mergeMU(a, b, MergeF, UpdateF, w);
    }
 
@@ -47,7 +47,7 @@ struct UnionFindBase
       if (!MergeF(x, y)) swap(x, y), w=-w;
       sz[x] += sz[y];
       parent[y] = x;
-      child[x].emplace_back(y);
+      children[x].emplace_back(y);
       UpdateF(x, y);
       diffWeight[y] = w;
       return true;
@@ -82,7 +82,7 @@ struct UnionFindBase
       vector<KeyT> mem;
       auto dfs = [&](auto dfs, const KeyT& x)->void {
          mem.push_back(x);
-         for(const KeyT& nxt: child[x]){
+         for(const KeyT& nxt: children[x]){
             dfs(dfs, nxt);
          }
       };
@@ -98,7 +98,7 @@ struct UnionFind : public UnionFindBase<int, vector<int>, vector<int>, vector<ve
       parent.resize(n, -1);
       sz.resize(n, 1);
       for(int i=0;i<n;i++) parent[i] = i;
-      child.resize(n);
+      children.resize(n);
       diffWeight.resize(n);
    }
 
