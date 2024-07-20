@@ -84,12 +84,12 @@ struct PeriodicGraph{
 
       ll M = 64;
       // while(M<=N) M <<=1;
-      db.resize(M, vector<int>(N));
+      db.resize(M, vector<CostT>(N));
       rep(i,N) db[0][i] = G[i][0].to;
       EL(db[0])
       rep(i,M-1){
          rep(j,N) db[i+1][j] = db[i][db[i][j]];
-         EL(db[i+1])
+         // EL(db[i+1])
       }
    }
 
