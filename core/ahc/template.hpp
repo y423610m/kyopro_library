@@ -83,8 +83,8 @@ template<typename T> void operator--(vector<T>& A){for(auto& a:A) a--;}//pre
 template<typename T> void operator--(vector<T>& A, int){for(auto& a:A) a--;}//post
 template<typename T> void operator++(vector<T>& A){for(auto& a:A) a++;}//pre
 template<typename T> void operator++(vector<T>& A, int){for(auto& a:A) a++;}//post
-template<typename T, typename U> void chmin(T& t, const U& u) {if (t > u) t = u;}
-template<typename T, typename U> void chmax(T& t, const U& u) {if (t < u) t = u;}
+template<typename T, typename U> bool chmin(T& t, const U& u) {if (t > u){t = u; return true;} return false;}
+template<typename T, typename U> bool chmax(T& t, const U& u) {if (t < u){t = u; return true;} return false;}
 template<typename T, typename U, typename S> void chmm(T& t, const U& u, const S& s) {if(t < u){t = u;} if(t > s){t = s;}}//clamp
 
 
