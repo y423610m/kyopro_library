@@ -23,6 +23,7 @@ constexpr ll INF = (1LL<<30)-1;
 constexpr ll LINF = (1LL<<62)-1;
 string Yes = "Yes";
 string No = "No";
+const char* NY[] = {"No", "Yes"};
 
 #define rep(i, n) for (ll i = 0; i < (ll)(n); i++)
 #define repi(i, a, n) for (ll i = a; i < (ll)(n); i++)
@@ -103,6 +104,9 @@ int main() {
    // stoll(s,nullptr,base);
    int TT = 1;
    //cin>>TT;
-   for(int tt = 0; tt<TT; tt++) solve();
+   for(int tt = 0; tt<TT; tt++){
+      // cout << "Case #" << (tt+1) << ": ";//MHC
+      solve();
+   }
    return 0;
 }
