@@ -1,8 +1,8 @@
 #pragma once
 
 template<typename Iter, typename Compare, typename Iter2>
-ll merge(Iter first, Iter mid, Iter last, Compare cmp, Iter2 arr){
-    ll ret = 0;
+long long merge(Iter first, Iter mid, Iter last, Compare cmp, Iter2 arr){
+    long long ret = 0;
     Iter l = first, r = mid;
     Iter2 p = arr;
     while(l<mid&&r<last){
@@ -22,8 +22,8 @@ ll merge(Iter first, Iter mid, Iter last, Compare cmp, Iter2 arr){
 }
  
 template<typename Iter, typename Compare, typename Iter2>
-ll merge_sort_(Iter first, Iter last, Compare cmp, Iter2 arr){
-    ll ret = 0;
+long long merge_sort_(Iter first, Iter last, Compare cmp, Iter2 arr){
+    long long ret = 0;
     if(last==first) return ret;
     Iter mid = first + (last - first)/2;
     if(first+1<mid) ret += merge_sort_(first, mid, cmp, arr);
@@ -33,13 +33,13 @@ ll merge_sort_(Iter first, Iter last, Compare cmp, Iter2 arr){
 }
 
 template<typename Iter, typename Compare>
-ll merge_sort(Iter first, Iter last, Compare cmp){
+long long merge_sort(Iter first, Iter last, Compare cmp){
     vector<typename Iter::value_type> Arr(last-first);
     return merge_sort_(first, last, cmp, Arr.begin());
 }
  
 template<typename Iter>
-ll merge_sort(Iter first, Iter last){
+long long merge_sort(Iter first, Iter last){
     vector<typename Iter::value_type> Arr(last-first);
     return merge_sort_(first, last, std::less<typename std::iterator_traits<Iter>::value_type>(), Arr.begin());
 }
@@ -81,7 +81,7 @@ ll merge_sort(Iter first, Iter last){
 
 /*
     #include "sort/bubble_sort.hpp"
-    vector<ll> A = {3,1,4,1,5,9,2};
+    vector<long long> A = {3,1,4,1,5,9,2};
     int cnt = bubble_sort(A.begin(), A.end());
     cnt = bubble_sort(A.begin(), A.end(), [](auto a, auto b){return a<b;});
     cnt = bubble_sort(A.begin(), A.end(), greater<>());
