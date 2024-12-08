@@ -47,3 +47,8 @@ function accr(){
     acc new -f $2
     cd $2
 }
+
+function ac(){
+    cp ${MY_KYOPRO_LIBRARY_ROOT}/core/ac.cpp $1.cpp
+    code $1.cpp
+}
