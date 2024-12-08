@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # acc
 #sudo apt install npm
 #npm install -g atcoder-cli
