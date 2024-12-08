@@ -42,7 +42,7 @@ function bd(){
 }
 
 function accr(){
-    cd {MY_ATCODER_ROOT}
+    cd ${MY_ATCODER_ROOT}
     cd $1
     acc new -f $2
     cd $2
