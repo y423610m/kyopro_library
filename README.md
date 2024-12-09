@@ -5,7 +5,7 @@ library for competitive programming
 ```
 git clone https://github.com/y423610m/kyopro_library.git
 cd kyopro_library
-source setup.bash
+source setup/setup.bash
 source ~/.bashrc
 g++ yourfile.cpp -I ${MY_KYOPRO_LIBRARY_ROOT}
 ```
