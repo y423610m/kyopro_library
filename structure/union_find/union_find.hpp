@@ -95,11 +95,24 @@ struct UnionFind : public UnionFindBase<int, vector<int>, vector<int>, vector<ve
 {
    UnionFind(int n) : UnionFindBase(n)
    {
-      parent.resize(n, -1);
+      Reset();
+   }
+
+   void Reset()
+   {
+      parent.resize(n);
       sz.resize(n, 1);
       for(int i=0;i<n;i++) parent[i] = i;
       children.resize(n);
       diffWeight.resize(n);
+
+      for(int i=0; i<n; i++) {
+         sz[i] = 1;
+         parent[i] = i;
+         children[i].clear();
+         diffWeight[i] = 0;
+      }
+
    }
 
    vector<vector<int>> groups(){
