@@ -1,54 +1,30 @@
-# define kyopro commands here
-#
+export KYOPRO_DOCKER_IMAGE_NAME=kyopro_image
+export KYOPRO_DOCKER_CONTAINER_NAME=kyopro_container
 
-function g() {
-    g++ -std=c++23 $1.cpp -I ${MY_KYOPRO_LIBRARY_ROOT} -I ${MY_ATCODER_LIBRARY_ROOT} -I ${MY_BOOST_LIB_ROOT} -I ${MY_EIGEN_LIB_ROOT}
+function kyopro_build_docker(){
+    docker compose -f ${MY_KYOPRO_LIBRARY_ROOT}/docker-compose.yml build
+    # docker compose -f ~/kyopro_library/docker-compose.yml build
+    # docker build -t ${KYOPRO_DOCKER_IMAGE_NAME} ${MY_KYOPRO_DOCKER_ROOT}
 }
 
-function gon(){
-    g++-12 -std=c++23 -I ${MY_KYOPRO_LIBRARY_ROOT} -I ${MY_ATCODER_LIBRARY_ROOT} -I ${MY_BOOST_LIB_ROOT} -I ${MY_EIGEN_LIB_ROOT} -O2 -g -DONLINE_JUDGE $1.cpp
+function kyopro_run_docker(){
+    docker compose -f ${MY_KYOPRO_LIBRARY_ROOT}/docker-compose.yml run --rm -v $(pwd):/mnt/$(basename $(pwd)) kyopro
+    # docker compose -f ~/kyopro_library/docker-compose.yml run -v $(pwd):/mnt/ kyopro
+    # docker run -v ~/AtCoder:/root/AtCoder -v ~/kyopro_library:/root/kyopro_library --rm --name ${KYOPRO_DOCKER_CONTAINER_NAME} -it ${KYOPRO_DOCKER_IMAGE_NAME}
 }
 
-function gof(){
-    g++-12 -std=c++23 -I ${MY_KYOPRO_LIBRARY_ROOT} -I ${MY_ATCODER_LIBRARY_ROOT} -I ${MY_BOOST_LIB_ROOT} -I ${MY_EIGEN_LIB_ROOT} -O2 -g $1.cpp
+function kyopro_exec_docker(){
+    docker compose -f ${MY_KYOPRO_LIBRARY_ROOT}/docker-compose.yml exec -it kyopro bash
+    # docker exec -it ${KYOPRO_DOCKER_CONTAINER_NAME} bash
 }
 
-function g_past(){
-    g++-12 -std=c++23 -I ${MY_KYOPRO_LIBRARY_ROOT} -I ${MY_ATCODER_LIBRARY_ROOT} -I ${MY_BOOST_LIB_ROOT} -I ${MY_EIGEN_LIB_ROOT} -g -fsanitize=undefined,address -D_GLIBCXX_DEBUG $1.cpp
+function kyopro_commit_docker(){
+    docker commit ${KYOPRO_DOCKER_CONTAINER_NAME} ${KYOPRO_DOCKER_IMAGE_NAME}:latest
 }
 
-function a(){
-    ./a.out
-}
-
-function te(){
-    oj t -d ./tests/ --ignore-spaces
-}
-
-function sb(){
-    acc submit $1.cpp
-}
-
-BUNDLE_FILENAME=SUB.cpp
-function bundle(){
-    oj-bundle -I ${MY_KYOPRO_LIBRARY_ROOT} -I ${MY_ATCODER_LIBRARY_ROOT} -I ${MY_BOOST_LIB_ROOT} -I ${MY_EIGEN_LIB_ROOT} -I /usr/include $1.cpp >${BUNDLE_FILENAME}
-    python3 ${MY_KYOPRO_LIBRARY_ROOT}/core/RemoveLine.py        
-    code ${BUNDLE_FILENAME}
-}
-
-function bd(){
-    bundle $1
-    acc submit ${BUNDLE_FILENAME}
-}
-
-function accr(){
-    cd ${MY_ATCODER_ROOT}
-    cd $1
-    acc new -f $2
-    cd $2
-}
-
-function ac(){
-    cp ${MY_KYOPRO_LIBRARY_ROOT}/core/ac.cpp $1.cpp
-    code $1.cpp
+function kyopro_rm_docker(){
+    containerid=$(docker ps | tail -n 1 | awk '{print $1}')
+    docker kill ${containerid}
+    containerid=$(docker ps -a | tail -n 1 | awk '{print $1}')
+    docker rm ${containerid}
 }
