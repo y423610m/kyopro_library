@@ -20,5 +20,4 @@ kyopro_exec_docker
 
 
 # Note
-- https://github.com/y423610m/kyopro_docker will create image for atcoder and automatically setup this repo. It'd be easier to start.
 - Some libraries depend on [ac_library](https://github.com/atcoder/ac-library). (e.g. segment tree related libs)
