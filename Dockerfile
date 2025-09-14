@@ -48,7 +48,11 @@ RUN apt install -y python3-pip && python3 -m pip install online-judge-tools --br
 RUN apt install -y gdb
 
 # kyopro commands
-COPY docker/.kyopro.bashrc /tmp/.kyopro.bashrc
-RUN cat /tmp/.kyopro.bashrc >> /root/.bashrc
+COPY ./.kyopro.bashrc /tmp/.kyopro.bashrc
+RUN cat /tmp/.kyopro.bashrc >> /root/.bashrc && rm /tmp/.kyopro.bashrc
+
+# vscode
+RUN mkdir -p /root/.vscode
+COPY ./kyopro.code-snippets /root/.vscode/
 
 CMD ["bash"]

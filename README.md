@@ -6,7 +6,7 @@ library for competitive programming
 ```
 git clone https://github.com/y423610m/kyopro_library.git
 cd kyopro_library
-source setup/setup.bash
+source setup.bash
 source ~/.bashrc
 
 ```

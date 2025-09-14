@@ -2,7 +2,7 @@ services:
   kyopro:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
     image: kyopro_image:latest
     container_name: kyopro_container
     network_mode: "host"

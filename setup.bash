@@ -13,5 +13,5 @@
 
 MY_KYOPRO_LIBRARY_ROOT=$(pwd)
 echo "export MY_KYOPRO_LIBRARY_ROOT=${MY_KYOPRO_LIBRARY_ROOT}" >> ~/.bashrc
-echo "source ${MY_KYOPRO_LIBRARY_ROOT}/setup/.bashrc" >>  ~/.bashrc
+echo "source ${MY_KYOPRO_LIBRARY_ROOT}/.bashrc" >>  ~/.bashrc
 
