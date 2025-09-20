@@ -9,7 +9,7 @@ services:
     environment:
       - MY_KYOPRO_LIBRARY_ROOT=/kyopro_library
     volumes:
-      - ../:/kyopro_library
+      - .:/kyopro_library
     stdin_open: true
     tty: true
     cap_add:
