@@ -41,7 +41,7 @@ RUN npm install -g atcoder-cli && acc config default-task-choice all
 # acc login
 
 # oj-tool
-RUN apt install -y python3-pip && python3 -m pip install online-judge-tools --break-system-packages
+RUN apt install -y python3-pip && python3 -m pip install online-judge-tools online-judge-verify-helper --break-system-packages
 # oj login https://atcoder.jp/
 
 # optional
