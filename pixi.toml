@@ -1,0 +1,38 @@
+[workspace]
+authors = ["YoshitoMori <y423610m@icloud.com>"]
+channels = ["conda-forge"]
+name = "kyopro_library"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+build = {cmd="""
+cd $INIT_CWD && 
+g++ $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib
+"""}
+
+build_full = {cmd="""
+cd $INIT_CWD && 
+g++ $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib -ltorch -ltorch_cpu -ltorch_cuda -lc10
+"""}
+
+prepare_ahc = {cmd="""
+cd $INIT_CWD && 
+cp -r $PIXI_PROJECT_ROOT/core/ahc $1
+"""}
+
+help = {cmd="""
+
+#pixi run build main.cpp
+#pixi run build_full main.cpp
+#pixi run prepare_ahc ahc0xx
+"""}
+
+[dependencies]
+boost = "==1.85"
+eigen = "==3.4.0"
+gmp = "==6.3.0"
+libtorch = "==2.8.0"
+unordered_dense = "==4.5.0"
+range-v3 = "==0.12.0"
+gxx = "==15.2.0"
