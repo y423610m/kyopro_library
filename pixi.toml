@@ -6,17 +6,54 @@ platforms = ["linux-64"]
 version = "0.1.0"
 
 [tasks]
-build = {cmd="""
+g = {cmd="""
 cd $INIT_CWD && 
-g++ $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib
+g++ -std=c++23 $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib
 """}
 
-build_full = {cmd="""
+gon = {cmd="""
 cd $INIT_CWD && 
-g++ $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib -ltorch -ltorch_cpu -ltorch_cuda -lc10
+g++ -std=c++23 $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib -O2 -g -DONLINE_JUDGE
 """}
 
-prepare_ahc = {cmd="""
+gof = {cmd="""
+cd $INIT_CWD && 
+g++ -std=c++23 $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib -O2 -g
+"""}
+
+gp = {cmd="""
+cd $INIT_CWD && 
+g++ -std=c++23 $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib -g -fsanitize=undefined,address -D_GLIBCXX_DEBUG
+"""}
+
+g_full = {cmd="""
+cd $INIT_CWD && 
+g++ -std=c++23 $1 -O2 -o a.out -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT -L $CONDA_PREFIX/lib -ltorch -ltorch_cpu -ltorch_cuda -lc10
+"""}
+
+folder = { cmd="""
+cd $INIT_CWD && 
+mkdir -p a &&
+mkdir -p b &&
+mkdir -p c &&
+mkdir -p d &&
+mkdir -p e &&
+mkdir -p f &&
+mkdir -p g &&
+mkdir -p h 
+"""}
+
+bundle = { cmd="""
+cd $INIT_CWD && 
+oj-bundle $1 -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT
+"""}
+
+ac = { cmd="""
+cd $INIT_CWD &&
+cp $PIXI_PROJECT_ROOT/core/ac.cpp $1
+"""}
+
+ahc = {cmd="""
 cd $INIT_CWD && 
 cp -r $PIXI_PROJECT_ROOT/core/ahc $1
 """}
@@ -36,3 +73,7 @@ libtorch = "==2.8.0"
 unordered_dense = "==4.5.0"
 range-v3 = "==0.12.0"
 gxx = "==15.2.0"
+python = "==3.12.0"
+
+[pypi-dependencies]
+online-judge-verify-helper = ">=5.6.0, <6"
