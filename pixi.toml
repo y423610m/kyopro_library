@@ -60,9 +60,12 @@ cp -r $PIXI_PROJECT_ROOT/core/ahc $1
 
 help = {cmd="""
 
-#pixi run build main.cpp
-#pixi run build_full main.cpp
-#pixi run prepare_ahc ahc0xx
+echo Examples: && 
+echo pixi run g main.cpp &&
+echo pixi run gp main.cpp &&
+echo pixi run folder && 
+echo pixi run ac a.cpp && 
+echo pixi run ahc ahc0xx
 """}
 
 [dependencies]
