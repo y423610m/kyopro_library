@@ -68,7 +68,7 @@ echo pixi run ac a.cpp &&
 echo pixi run ahc ahc0xx
 """}
 
-test = { cmd = "bash run_tests.sh", env = { CXXFLAGS = "-std=c++17 -O2 -I." } }
+test = { cmd = "bash run_tests.sh" }
 
 [dependencies]
 boost = "==1.85"
