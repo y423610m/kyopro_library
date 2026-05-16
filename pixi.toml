@@ -43,6 +43,7 @@ mkdir -p g &&
 mkdir -p h 
 """}
 
+# pixi run bundle main.cpp > SUB.cpp
 bundle = { cmd="""
 cd $INIT_CWD && 
 oj-bundle $1 -I $CONDA_PREFIX/include -I $PIXI_PROJECT_ROOT/ac-library -I $PIXI_PROJECT_ROOT
@@ -53,6 +54,7 @@ cd $INIT_CWD &&
 cp $PIXI_PROJECT_ROOT/core/ac.cpp $1
 """}
 
+# pixi run ahc ahc0xx
 ahc = {cmd="""
 cd $INIT_CWD && 
 cp -r $PIXI_PROJECT_ROOT/core/ahc $1
